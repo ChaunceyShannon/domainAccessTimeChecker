@@ -83,9 +83,9 @@ func main() {
 						lg.trace("Error while check url \""+url+"\":", err.Error())
 						if strIn("no such host", err.Error()) || strIn("\": EOF >>", err.Error()) {
 							hostNotFound.set(url, "")
-							establish = -1
+							establish = -1 // Either the domain is not configured, or is not taken(in godaddy, it will be pointed to a default advertisement web page if not taken.)
 						} else {
-							establish = -2
+							establish = -2 // Other errors.
 						}
 					} else {
 						establish = now() - start
